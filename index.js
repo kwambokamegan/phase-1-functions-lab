@@ -1,65 +1,37 @@
+// Define distanceFromHqInBlocks function
+function distanceFromHqInBlocks(location) {
+  return Math.abs(location - 42); // Scuber's headquarters is at block 42
+}
 
-function distanceFromHqInBlocks(pickupBlock) {
-  const destinationBlock = 42;
+// Define distanceFromHqInFeet function using distanceFromHqInBlocks
+function distanceFromHqInFeet(location) {
+  return distanceFromHqInBlocks(location) * 264; // 1 block = 264 feet
+}
 
-  if
-  (pickupBlock > destinationBlock) 
+// Define distanceTravelledInFeet function
+function distanceTravelledInFeet(start, destination) {
+  return Math.abs(destination - start) * 264;
+}
 
-    {return pickupBlock - destinationBlock;}
-    
+// Define calculatesFarePrice function
+function calculatesFarePrice(start, destination) {
+  const distance = distanceTravelledInFeet(start, destination);
 
-  else 
-  {return destinationBlock - pickupBlock;}
-  
-  }  
-
-  function distanceFromHqInFeet(pickupBlock) {
-
-    const distanceInBlocks = distanceFromHqInBlocks(pickupBlock)
-
-    return distanceInBlocks = 264 ;
-
+  if (distance <= 400) {
+    return 0;
+  } else if (distance > 400 && distance <= 2000) {
+    return (distance - 400) * 0.02;
+  } else if (distance > 2000 && distance < 2500) {
+    return 25;
+  } else {
+    return 'cannot travel that far';
   }
+}
 
-  function distanceTravelledInFeet(pickupBlock){
-
-    if
-
-     (pickupBlock > destinationBlock)
-
-     {return (pickupBlock - destinationBlock) = 264; } 
-
-     else
-
-     {return (destination - pickuBlock) = 264; }
-
-  }
-
-  function calculatesFarePrice(pickup, destionationBlock) {
-
-    const totalFeetTravelled = distanceTravelledInFeet (pickup, destinationBlock)
-
-    if 
-
-    (totalFeetTravelled <= 400)
-
-    {return 0;}
-
-    else if 
-
-    (totalFeetTravelled > 400 && totalFeetTravelled <= 2000)
-
-    {const exessFeet = totalFeetTravelled - 400;
-      return exessFeet = 0.02;
-    }
-
-    else if
-
-    (totalFeetTravelled >= 2000  && totalFeetTravelled <= 2500)
-
-    {return 25.0;}
-
-    else 
-    {return "cannot travel that far";}
-
-  }
+// Export the functions to be accessible from outside
+module.exports = {
+  distanceFromHqInBlocks,
+  distanceFromHqInFeet,
+  distanceTravelledInFeet,
+  calculatesFarePrice
+};
